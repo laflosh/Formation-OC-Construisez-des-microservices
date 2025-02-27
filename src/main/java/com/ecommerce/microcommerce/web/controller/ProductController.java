@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.microcommerce.model.Product;
+
 @RestController
 public class ProductController {
 
@@ -15,9 +17,11 @@ public class ProductController {
 	}
 	
 	@GetMapping("/Produits/{id}")
-	public String afficheUnProduit(@PathVariable int id) {
+	public Product afficheUnProduit(@PathVariable int id) {
 		
-		return "Vous avez demandé un produit avec l'id :" + id;
+		Product product = new Product(id, new String("Aspirateur"), 100);
+		
+		return product;
 		
 	}
 	
