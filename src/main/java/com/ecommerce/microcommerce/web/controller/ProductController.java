@@ -7,9 +7,11 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -68,6 +70,20 @@ public class ProductController {
 					.toUri();
 		
 		return ResponseEntity.created(location).build();
+		
+	}
+	
+	@DeleteMapping(value = "/Produits/{id}")
+	public void supprimerProduit(@PathVariable int id) {
+		
+		productDao.deleteById(id);
+		
+	}
+	
+	@PutMapping(value = "/Products/{id}")
+	public void updateProduit(@RequestBody Product product) {
+		
+		productDao.save(product);
 		
 	}
 	
